@@ -50,3 +50,13 @@ app.post('/login', (req, res) => {
 app.listen(port, ()=>{
     console.log(`Servidor rodando no endereço: http://localhost/:${port}`)
 });
+
+app.get('/cadastro', (req, res)=>{
+  res.sendFile(__dirname + '/cadastro.html')
+});
+
+app.get('/criar', (req, res)=>{
+    const {username, password} = req.body;
+
+    db.query(`INSERT INTO user (${username}, ${password})`, )
+})
