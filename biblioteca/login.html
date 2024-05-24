@@ -1,48 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-          background-color: #f8f9fa;
-        }
-        .login-container {
-          margin-top: 100px;
-        }
-        .botao-cadastrar {
-          background-color: transparent;
-          border: none; 
-          color: #007bff;
-          cursor: pointer; 
-          outline: none; 
-        }
-      </style>
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/library.jpg');
+    background-size: cover; /* Para cobrir toda a tela */
+    background-position: center; /* Centralizar a imagem de fundo */
+}
+
+.caixa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    background-color: #8A3119;
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+
+.titulo {
+    font-size: 50px;
+    color: white;
+}
+
+.text {
+    color: white;
+    margin: 5px;
+}
+
+.input {
+    border-radius: 20px;
+    border: none;
+    color: black;
+    height: 30px;
+    width: 190px;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.entrar {
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: #5A0F19;
+    height: 30px;
+    width: 200px;
+}
+
+.link {
+    background-color: #8A3119;
+    text-decoration: underline;
+    color: white;
+    background-color: transparent;
+    border: none; 
+    cursor: pointer; 
+    outline: none; 
+}
+
+  </style>
 </head>
 <body>
+
 
     <div class="container">
         <div class="row justify-content-center login-container">
           <div class="col-md-4">
             <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-center">Login</h5>
+              <div class="caixa">
+                <p class="titulo">Login</p>
                 <form action="/login" method="POST">
+                  <label for="email" class="text">E-mail</label>
                   <div class="form-group">
-                    <label for="username">Usuário</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Nome do usuário" required>
+                    <input type="text" class="input" id="email" name="email" placeholder="exemplo@email" required>
                   </div>
+                  <label for="password" class="text">Senha</label>
                   <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                    <input type="password" class="input" id="password" name="password" placeholder="Senha" required>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                  <button type="submit" class="entrar">Entrar</button>
                 </form>
                 <form action="/cadastro" method="GET">
-                  <p>Não possui uma conta? <button type="submit" class="botao-cadastrar"> Cadastre-se aqui</button></p>
+                  <p class="text">Não possui uma conta? <button type="submit" class="link"> Cadastre-se aqui</button></p>
                 </form>
               </div>
             </div>
@@ -50,5 +104,8 @@
         </div>
       </div>
       
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -20,4 +20,33 @@ db.connect((error)=>{
 const app = express();
 const port = 3000;
 
-app.listen(port)
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.listen(port, ()=>{
+    console.log(`Servidor rodando no endereço: http://localhost/:${port}`)
+});
+
+app.get('/', (req, res)=>{
+    res.sendFile(__dirname + '/login.html')
+});
+
+app.post('/login', (req, res)=>{
+    const {email, password} = req.body;
+
+    db.query('', [], (error, results)=>{
+        if(error){
+            res.status(500).send('Erro ao obter usuários')
+        } else{
+            if(results.length > 0){
+                const user = results[0];
+                if(user.password === password){
+                    res.send('Login bem-sucedido!');
+                } else{
+                    res.status(401).send('Credenciais inválidas. Tente novamente');
+                }
+            } else{
+                
+            }
+        }
+    })
+})
