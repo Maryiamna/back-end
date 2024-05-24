@@ -19,11 +19,13 @@
       cursor: pointer; 
       outline: none; 
     }
+    .alert{
+      color:red
+    }
   </style>
 </head>
+
 <body>
-
-
 <div class="container">
   <div class="row justify-content-center login-container">
     <div class="col-md-4">
@@ -39,7 +41,7 @@
               <label for="password">Senha</label>
               <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="confirm-group">
               <label for="password">Confirmar senha</label>
               <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Senha" required>
             </div>
@@ -59,9 +61,7 @@
   document.getElementById("cadastroForm").addEventListener("submit", function(event){
     const password = document.getElementById("password").value;
     const confirm = document.getElementById("passwordConfirm").value;
-    const tentativa =  document.getElementById("msg");
-  
-    if(!tentativa){
+
       if(password !== confirm){
         let span = document.createElement("span");
         span.classList.add('alert');
@@ -70,8 +70,6 @@
         document.getElementById("confirm-group").appendChild(span);
         event.preventDefault();
       }
-    }
-     
   })
   </script>
 
