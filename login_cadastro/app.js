@@ -25,10 +25,13 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get('/', (req, res)=>{ //declarar qual é o caminho da rota escolhida, no caso '/'
     res.sendFile(__dirname + '/login.html') //__dirname serve para pegar o diretório atual desde o começo da raiz
 });
+app.get('/cadastro', (req, res)=>{
+  res.sendFile(__dirname + '/cadastro.html')
+});
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-  
+
     db.query('SELECT password FROM user WHERE username = ?', [username], (error, results) => {
       if(error){
         res.status(500).send('Erro ao obter usuários')
@@ -51,12 +54,20 @@ app.listen(port, ()=>{
     console.log(`Servidor rodando no endereço: http://localhost/:${port}`)
 });
 
-app.get('/cadastro', (req, res)=>{
-  res.sendFile(__dirname + '/cadastro.html')
+app.post('/cadastro', (req, res) =>{
+  const username = req.body.username;
+  const password = req.body.password;
+  const confirm = req.body.passwordConfirm;
+
+  if(password === confirm){
+    db.query('insert into user (username, password) values (?,?)', [username, password], (error, results) =>{
+      if(error){
+        console.log('Erro ao realizar o cadastro', error)
+      } else{
+        console.log('Cadastro realizado')
+      }
+    })
+  } else{
+    console.log('Senhas não coincidem')
+  }
 });
-
-app.get('/criar', (req, res)=>{
-    const {username, password} = req.body;
-
-    db.query(`INSERT INTO user (${username}, ${password})`, )
-})
